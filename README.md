@@ -24,3 +24,6 @@ e selecionou a opção do Navigation ( Typescript )
 
 #### Conseguir aplicar as classes de forma condicional, ajuda a simplificar o código (ajudou a fazer o hover)
 - npm i clsx
+
+#### Uso do Zustand para trabalhar com estados globais - fazer a sacola de compras atualizar o numero em cima
+- npm install zustand
