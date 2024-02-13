@@ -25,10 +25,6 @@ O projeto do React Native Menu é um aplicativo móvel de entrega de alimentos d
 e selecionou a opção do Navigation ( Typescript )
 
 
-### Para rodar
-- npx expo start
-
-
 ### Uso do Tailwind CSS  -  NativeWind
 - npm i nativewind@2.0.11
 - npm i tailwindcss@3.3.2 --save-dev
