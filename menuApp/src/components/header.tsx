@@ -2,6 +2,8 @@
 
 import { Image, Text, View, TouchableOpacity } from 'react-native';
 
+import { Link } from 'expo-router';
+
 // icones do proprio expo
 import { Feather } from '@expo/vector-icons';
 import colors from 'tailwindcss/colors';
@@ -27,14 +29,16 @@ export function Header({ title, cartQuantityItems = 0 }: HeaderProps) {
         {/* &&  -- usado para renderizar o que está depois se for maior que 0
             activeOpacity={0.7}  -- 70% a opacidade */}
       {cartQuantityItems > 0 && (
-        <TouchableOpacity className="relative" activeOpacity={0.7}>
-          <View className="bg-lime-300 w-4 h-4 rounded-full items-center justify-center top-2 z-10 -right-3.5">
-            <Text className="text-slate-900 font-bold text-xs">{cartQuantityItems}</Text>
-          </View>
+        <Link href="/cart" asChild >
+          <TouchableOpacity className="relative" activeOpacity={0.7}>
+            <View className="bg-lime-300 w-4 h-4 rounded-full items-center justify-center top-2 z-10 -right-3.5">
+              <Text className="text-slate-900 font-bold text-xs">{cartQuantityItems}</Text>
+            </View>
 
-            {/* icone de sacolinha de compras */}
-          <Feather name="shopping-bag" color={colors.white} size={24} />
-        </TouchableOpacity>
+              {/* icone de sacolinha de compras */}
+            <Feather name="shopping-bag" color={colors.white} size={24} />
+          </TouchableOpacity>
+        </Link>
       )}
     </View>
   );

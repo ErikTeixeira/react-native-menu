@@ -4,7 +4,7 @@ import { View, Text, FlatList, SectionList } from 'react-native';
 // serve para conseguir ir para outrar páginas
 import { Link } from "expo-router";
 
-import { CATEGORIES, MENU } from '@/utils/data/products';
+import { CATEGORIES, MENU, ProductProps } from '@/utils/data/products';
 
 import { Header } from '@/components/header';
 import { CategoryButton } from '@/components/category-button';
@@ -17,7 +17,7 @@ export default function Home() {
   const cartStore = useCartStore();
   const [category, setCategory] = useState(CATEGORIES[0]);
 
-  const sectionListRef = useRef<SectionList>(null);
+  const sectionListRef = useRef<SectionList<ProductProps>>(null);
 
   // percorre a quantidade de cada produto e vai somando, 0 é o valor inicial
   const cartQuantityItems = cartStore.products.reduce( (total, product) => total + product.quantity, 0 )

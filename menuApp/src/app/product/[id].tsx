@@ -1,6 +1,8 @@
 // o nome do arquivo é assim [id], porque o expo-router consegue identificar que é para procurar de acordo com o id 
 import { Image, Text, View } from "react-native";
 
+import { Redirect } from "expo-router";
+
 // biblioteca de icones
 import { Feather } from "@expo/vector-icons";
 
@@ -18,21 +20,38 @@ export default function Product() {
     const cartStore = useCartStore();
     const navigation = useNavigation();
 
-    const product = PRODUCTS.filter( (item) => item.id === id )[0];
+    // em vez de usar o filter, usa o find, mas ai ele pode ser undefined ai usa o Redirect do expo-router
+    const product = PRODUCTS.find( (item) => item.id === id );
 
     function handleAddToCart() {
-        cartStore.add(product)
+        if(product) {
+            cartStore.add(product)
+    
+            // quando adicionar vai voltar para o ínicio
+            navigation.goBack();
+        }
+    }
 
-        // quando adicionar vai voltar para o ínicio
-        navigation.goBack();
+    // se o produto não existir, volta para o inicio
+    if(!product) {
+        return <Redirect href="/" />
     }
 
     return (
         <View className="flex-1" >
-            <Image source={product.cover} className="w-full h-52" resizeMode="cover" />
+            <Image 
+                source={product.cover} 
+                className="w-full h-52" 
+                resizeMode="cover" 
+            />
+
 
             {/* my -> margin na vertical */}
             <View className="p-5 mt-8 flex-1" >
+                <Text className="text-white text-xl font-heading" >
+                    {product.title}
+                </Text>
+                
                 <Text className="text-lime-400 text-2xl font-heading my-2" >
                     { formatCurrency(product.price) }
                 </Text>
